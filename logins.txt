@@ -1,0 +1,3 @@
+admin@winshop.pk	 	123456
+seller@winshop.pk	123456
+customer@winshop.pk	123456
