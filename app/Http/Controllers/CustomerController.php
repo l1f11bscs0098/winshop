@@ -41,6 +41,12 @@ class CustomerController extends Controller
         //
     }
 
+    public function register(Request $request)
+    {
+
+        return view('customers.register');
+    }
+
     /**
      * Display the specified resource.
      *

@@ -98,6 +98,7 @@ class ProductController extends Controller
         $product->video_provider = $request->video_provider;
         $product->video_link = $request->video_link;
         $product->unit_price = $request->unit_price;
+        $product->whole_sale_price = $request->whole_sale_price;
         $product->purchase_price = $request->purchase_price;
         $product->tax = $request->tax;
         $product->tax_type = $request->tax_type;
@@ -310,6 +311,7 @@ class ProductController extends Controller
         $product->video_provider = $request->video_provider;
         $product->video_link = $request->video_link;
         $product->unit_price = $request->unit_price;
+        $product->whole_sale_price = $request->whole_sale_price;
         $product->purchase_price = $request->purchase_price;
         $product->tax = $request->tax;
         $product->tax_type = $request->tax_type;

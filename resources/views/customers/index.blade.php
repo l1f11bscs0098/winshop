@@ -14,7 +14,8 @@
 <!--===================================================-->
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">{{__('Customers')}}</h3>
+        <h3 class="panel-title" style="width: 50%;">{{__('Customers')}}</h3>
+        <a href="{{ route('customers.register')}}" class="btn btn-primary" style="float: right;">Register Whole Seller</a>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-bordered demo-dt-basic" cellspacing="0" width="100%">

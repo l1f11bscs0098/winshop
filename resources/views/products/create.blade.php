@@ -215,9 +215,15 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-lg-2 control-label">{{__('Whole Sale price')}}</label>
+								<div class="col-lg-7">
+									<input type="number" min="0" value="0" step="0.01" placeholder="{{__('Whole Sale price')}}" name="whole_sale_price" class="form-control" required>
+								</div>
+							</div>
+							<div class="form-group" style="display: none">
 								<label class="col-lg-2 control-label">{{__('Purchase price')}}</label>
 								<div class="col-lg-7">
-									<input type="number" min="0" value="0" step="0.01" placeholder="{{__('Purchase price')}}" name="purchase_price" class="form-control" required>
+									<input type="number" min="0" value="0" step="0.01" placeholder="{{__('Purchase price')}}" name="purchase_price" class="form-control">
 								</div>
 							</div>
 							<div class="form-group">

@@ -270,6 +270,12 @@
 	                            </div>
 	                        </div>
 	                        <div class="form-group">
+	                            <label class="col-lg-2 control-label">{{__('Whole Sale price')}}</label>
+	                            <div class="col-lg-7">
+	                                <input type="text" placeholder="{{__('whole sale price')}}" name="whole_sale_price" class="form-control" value="{{$product->whole_sale_price}}" required>
+	                            </div>
+	                        </div>
+	                        <div class="form-group" style="display: none">
 	                            <label class="col-lg-2 control-label">{{__('Purchase price')}}</label>
 	                            <div class="col-lg-7">
 	                                <input type="number" min="0" step="0.01" placeholder="{{__('Purchase price')}}" name="purchase_price" class="form-control" value="{{$product->purchase_price}}" required>
