@@ -255,6 +255,17 @@ class HomeController extends Controller
     public function listing(Request $request)
     {
         $products = filter_products(Product::orderBy('created_at', 'desc'))->paginate(12);
+        if(Auth::check())
+        {
+            if( Auth::user()->user_type == 'wholeSeller'){
+                foreach ($products as $key => $product) {
+                    if($product->whole_sale_price && $product->whole_sale_price != null)
+                    $product->unit_price = $product->whole_sale_price;
+                    # code...
+                }
+            }
+
+        }
         return view('frontend.product_listing', compact('products'));
     }
 
@@ -285,6 +296,17 @@ class HomeController extends Controller
     public function seller_product_list(Request $request)
     {
         $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        if(Auth::check())
+        {
+            if( Auth::user()->user_type == 'wholeSeller'){
+                foreach ($products as $key => $product) {
+                    if($product->whole_sale_price && $product->whole_sale_price != null)
+                    $product->unit_price = $product->whole_sale_price;
+                    # code...
+                }
+            }
+
+        }
         return view('frontend.seller.products', compact('products'));
     }
 
@@ -382,6 +404,19 @@ class HomeController extends Controller
         }
 
         $products = filter_products($products)->paginate(12)->appends(request()->query());
+
+
+if(Auth::check())
+        {
+            if( Auth::user()->user_type == 'wholeSeller'){
+                foreach ($products as $key => $product) {
+                    if($product->whole_sale_price && $product->whole_sale_price != null)
+                    $product->unit_price = $product->whole_sale_price;
+                    # code...
+                }
+            }
+
+        }
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'subcategory_id', 'subsubcategory_id', 'brand_id', 'sort_by', 'seller_id','min_price', 'max_price'));
     }

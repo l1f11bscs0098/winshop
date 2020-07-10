@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
+
+// ALTER TABLE `products` ADD `whole_sale_price` DOUBLE(8,2) NOT NULL DEFAULT '0' AFTER `unit_price`;
 
 use Illuminate\Http\Request;
 use App\Product;
