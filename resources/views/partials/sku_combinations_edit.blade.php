@@ -9,6 +9,9 @@
 					<label for="" class="control-label">{{__('Variant Price')}}</label>
 				</td>
 				<td class="text-center">
+					<label for="" class="control-label">{{__('Whole Sale Price')}}</label>
+				</td>
+				<td class="text-center">
 					<label for="" class="control-label">{{__('SKU')}}</label>
 				</td>
 				<td class="text-center">
@@ -63,6 +66,17 @@
 						echo $unit_price;
 					}
                 @endphp" min="0" step="0.01" class="form-control" required>
+			</td>
+
+			<td>
+				<input type="number" name="wholeSale_{{ $str }}" value="@php
+                    if(isset(json_decode($product->variations)->$str->wholeSale_price)){
+                        echo json_decode($product->variations)->$str->wholeSale_price;
+                    }
+                    else{
+                        echo $unit_price;
+                    }
+                @endphp" min="0" step="1" class="form-control" required>
 			</td>
 			<td>
 				<input type="text" name="sku_{{ $str }}" value="{{ $sku }}" class="form-control" required>

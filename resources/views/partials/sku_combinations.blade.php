@@ -9,6 +9,9 @@
 					<label for="" class="control-label">{{__('Variant Price')}}</label>
 				</td>
 				<td class="text-center">
+					<label for="" class="control-label">{{__('Whole Sale Price')}}</label>
+				</td>
+				<td class="text-center">
 					<label for="" class="control-label">{{__('SKU')}}</label>
 				</td>
 				<td class="text-center">
@@ -52,6 +55,9 @@
 				</td>
 				<td>
 					<input type="number" name="price_{{ $str }}" value="{{ $unit_price }}" min="0" step="0.01" class="form-control" required>
+				</td>
+				<td>
+					<input type="number" name="wholeSale_{{ $str }}" value="{{ $wholeSale_price }}" min="0" step="0.01" class="form-control" required>
 				</td>
 				<td>
 					<input type="text" name="sku_{{ $str }}" value="{{ $sku }}" class="form-control" required>

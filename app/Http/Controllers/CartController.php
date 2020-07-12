@@ -8,6 +8,7 @@ use App\SubSubCategory;
 use App\Category;
 use Session;
 use App\Color;
+use Auth;
 
 class CartController extends Controller
 {
@@ -56,7 +57,30 @@ class CartController extends Controller
         }
 
         //Check the string and decreases quantity for the stock
-        if($str != null){
+        
+
+        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+            if($product->whole_sale_price){
+                if($product->whole_sale_price && $product->whole_sale_price > 0){
+                    $price = $product->whole_sale_price;
+if($str != null){
+            $variations = json_decode($product->variations);
+            $price = $variations->$str->wholeSale_price;
+            if($variations->$str->qty >= $request['quantity']){
+                // $variations->$str->qty -= $request['quantity'];
+                // $product->variations = json_encode($variations);
+                // $product->save();
+            }
+            else{
+                return view('frontend.partials.outOfStockCart');
+            }
+        }
+
+                }
+            }
+}
+else{
+    if($str != null){
             $variations = json_decode($product->variations);
             $price = $variations->$str->price;
             if($variations->$str->qty >= $request['quantity']){
@@ -71,6 +95,7 @@ class CartController extends Controller
         else{
             $price = $product->unit_price;
         }
+}
 
         //discount calculation based on flash deal and regular discount
         //calculation of taxes

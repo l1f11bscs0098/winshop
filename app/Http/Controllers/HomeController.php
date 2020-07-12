@@ -229,6 +229,17 @@ class HomeController extends Controller
         $product  = Product::where('slug', $slug)->first();
         if($product!=null){
             updateCartSetup();
+if(Auth::check())
+        {
+            // dd(Auth::user()->user_type);
+            if( Auth::user()->user_type == 'wholeSeller'){
+                    if($product->whole_sale_price && $product->whole_sale_price > 0)
+                    $product->unit_price = $product->whole_sale_price;
+            // dd($product);
+            }
+
+        }
+
             return view('frontend.product_details', compact('product'));
         }
         abort(404);
@@ -467,6 +478,7 @@ if(Auth::check())
         $product = Product::find($request->id);
         $str = '';
         $quantity = 0;
+        $price = $product->unit_price;
 
         if($request->has('color')){
             $data['color'] = $request['color'];
@@ -481,7 +493,18 @@ if(Auth::check())
                 $str .= str_replace(' ', '', $request[$choice->name]);
             }
         }
-
+        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+if($str != null){
+            $price = json_decode($product->variations)->$str->wholeSale_price;
+            $quantity = json_decode($product->variations)->$str->qty;
+        }
+        else{
+            $price = $product->whole_sale_price;
+            $quantity = $product->current_stock;
+        }
+        $product->discount = 0;
+}
+else{
         if($str != null){
             $price = json_decode($product->variations)->$str->price;
             $quantity = json_decode($product->variations)->$str->qty;
@@ -490,7 +513,7 @@ if(Auth::check())
             $price = $product->unit_price;
             $quantity = $product->current_stock;
         }
-
+}
         //discount calculation
         $flash_deal = \App\FlashDeal::where('status', 1)->first();
         if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
