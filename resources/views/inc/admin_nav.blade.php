@@ -137,8 +137,8 @@ $orders = DB::table('orders')
 
 
     <ul class="collapse child dropdown-menu">
-        <li class="{{ areActiveRoutes(['customers.index'])}}">
-            <a class="nav-link" href="{{ route('customers.index') }}">
+        <li class="{{ areActiveRoutes(['orders.index.admin', 'orders.show'])}}">
+            <a class="nav-link" href="{{ route('orders.index.admin') }}">
                 {{__('Inhouse orders')}} @if($orders > 0)
                 <span class="pull-right badge badge-info">{{ $orders }}</span>@endif
             </a>
