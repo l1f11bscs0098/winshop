@@ -1,6 +1,6 @@
 <!--MAIN NAVIGATION-->
 <!--===================================================-->
-<nav id="mainnav-container" class="d-none">
+<nav id="mainnav-container" style="display:none">
     <div id="mainnav">
 
         <!--Menu-->
@@ -79,7 +79,7 @@
                     <!--End shortcut buttons-->
 
 
-                    <ul id="mainnav-menu" class="list-group topbar-list">
+                    <ul id="mainnav-menu" class="list-group">
 
                         <!--Category name-->
                         {{-- <li class="list-header">Navigation</li> --}}

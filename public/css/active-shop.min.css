@@ -497,13 +497,13 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	left:0;
 	top:0
 }
-.navbar-header {
+/* .navbar-header {
 	display:none
-}
+} */
 .navbar-content {
 	background-color:#25476a;
-	height:59px;
-	text-align:right
+	height:55px;
+	/* text-align:right */
 }
 .navbar-aside-icon>*:before {
 	background-color:#fff !important
@@ -511,7 +511,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 .navbar-brand {
 	color:#25476a;
 	padding:0;
-	height:59px;
+	height:55px;
 	position:relative;
 	z-index:2000;
 	overflow:hidden
@@ -524,10 +524,11 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	line-height:59px
 }
 .brand-icon {
+	max-width: 100%;
 	display:block;
-	line-height:59px;
-	width:59px;
-	height:59px;
+	line-height:55px;
+	width:55px;
+	height:55px;
 	float:left;
 	margin:0
 }
@@ -721,7 +722,11 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 }
 #dropdown-user .ic-user {
 	font-size:16px;
-	line-height:59px
+	/* line-height:59px */
+}
+
+#mainnav-menu>li>a:hover, #mainnav-menu>li>a:active {
+    color: #294f75 !important;
 }
 #dropdown-user .ic-user>i {
 	vertical-align:middle
@@ -750,25 +755,25 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 		background-color:transparent;
 		z-index:10000
 	}
-	.navbar-header {
+	.navbar-header-logo {
 		background-color:transparent;
 		display:block;
 		left:0;
 		position:relative;
 		float:left
 	}
-	.navbar-header:before {
+	.navbar-header-logo:before {
 		content:'';
 		position:absolute;
 		display:block;
 		width:100%;
-		height:59px;
+		height:55px;
 		background-color:#25476a
 	}
-	#container.mainnav-out .navbar-header:before {
+	#container.mainnav-out .navbar-header-logo:before {
 		width:0
 	}
-	#container.mainnav-in .navbar-header:before {
+	#container.mainnav-in .navbar-header-logo:before {
 		width:100%
 	}
 	#navbar-container {
@@ -1046,7 +1051,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 #mainnav-menu a {
 	display:block;
 	color:inherit;
-	padding:12px 18px
+	padding:14px 18px
 }
 #mainnav-menu a strong {
 	font-weight:600
@@ -1104,7 +1109,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 }
 #mainnav-menu i {
 	font-size:15px;
-	padding:0 10px 0 0;
+	padding:0 5px 0 0;
 	vertical-align:middle
 }
 #mainnav-menu .hide-lg {
@@ -1125,7 +1130,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 }
 @media (min-width:1200px) {
 	#mainnav-menu ul a,.menu-popover .sub-menu ul a {
-		padding:8px 20px 8px 53px
+		padding:5px 0px 5px 15px
 	}
 	#mainnav-menu ul ul a,.menu-popover .sub-menu ul ul a {
 		padding:8px 20px 8px 65px
@@ -1265,9 +1270,9 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	#container.mainnav-lg #mainnav-container {
 		left:0
 	}
-	#container.mainnav-lg #footer,#container.mainnav-lg #content-container {
+	/* #container.mainnav-lg #footer,#container.mainnav-lg #content-container {
 		padding-left:220px
-	}
+	} */
 }
 @media (min-width:768px) and (max-width:991px) {
 	#container.mainnav-lg #content-container,#container.mainnav-lg #footer {
@@ -7269,7 +7274,7 @@ blockquote {
 		text-align:left
 	}
 }
-@media (max-width:760px) {
+@media (max-width:767px) {
 	.text-xs-right {
 		text-align:right
 	}
@@ -7278,6 +7283,10 @@ blockquote {
 	}
 	.text-xs-left {
 		text-align:left
+	}
+	.navbar-nav{
+		background: white;
+		margin-top: 0;
 	}
 }
 .icon-wrap {
@@ -7481,6 +7490,17 @@ a.disabled-link,a.disabled-link:visited,a.disabled-link:active,a.disabled-link:h
 	width:100%;
 	table-layout:fixed
 }
+
+/* new changes */
+
+.d-none{
+	display: none !important;
+}
+
+.list-group{
+	margin-bottom: 0 !important;
+}
+
 @media (min-width:1200px) {
 	.eq-height .eq-box-lg {
 		display:table-cell;
@@ -7516,5 +7536,40 @@ a.disabled-link,a.disabled-link:visited,a.disabled-link:active,a.disabled-link:h
 	}
 	.eq-height .eq-box-sm .panel {
 		margin-bottom: 0
+	}
+
+	.topbar-list li{
+		display: inline-block;
+	}
+	.collapse.in li{
+		display: block;
+		width: 100%;
+	}
+	.active .collapse.in{
+		background-color: #fff;
+	}
+	.collapse.in li a:hover{
+		color: #000 !important;
+	}
+	
+	.parent{
+		position: relative;
+	}
+	
+	.child{
+		position: absolute;
+		top:45px;
+		left:0;
+		display: none  !important;
+		transition: all 0.3s ease;
+		background: white;
+		width: 170%;
+	}
+	.parent:hover .child{
+		display: block !important; 
+	}
+	
+	.child li{
+		display: block;
 	}
 }

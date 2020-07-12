@@ -288,17 +288,17 @@ body, #content-container, #navbar {
 }
 @media (min-width: 768px){
   #container.mainnav-in .navbar-brand, #container.mainnav-lg .navbar-brand, #container.mainnav-in .brand-title, #container.mainnav-lg .brand-title {
-    width: 280px;
+    width: 55px;
   }
   .navbar-content {
-      margin-left: 280px;
+      margin-left: 60px;
   }
 }
-@media (min-width: 992px){
+/* @media (min-width: 992px){
   #container.mainnav-lg #footer, #container.mainnav-lg #content-container {
       padding-left: 280px;
   }
-}
+} */
 
 .color-radio label {
   display: block;
@@ -339,9 +339,9 @@ body, #content-container, #navbar {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-ul.list-group > li{
+/* ul.list-group > li{
 border-bottom: 1px solid #3d4451;
-}
+} */
 
 .text-truncate {
     overflow: hidden;
