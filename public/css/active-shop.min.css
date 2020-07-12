@@ -1988,7 +1988,9 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	height:35px
 }
 #footer p {
-	margin-bottom:5px
+	text-align: center;
+    padding-top: 10px;
+    margin-bottom: 0;
 }
 .footer-list {
 	margin-bottom:0

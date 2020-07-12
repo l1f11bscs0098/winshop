@@ -11,7 +11,7 @@
 				<h3 class="panel-title">{{__('Product Information')}}</h3>
 			</div>
 			<div class="panel-body">
-				<div class="tab-base tab-stacked-left">
+				<div class="tab-base tab-stacked-top">
 				    <!--Nav tabs-->
 				    <ul class="nav nav-tabs">
 				        <li class="active">

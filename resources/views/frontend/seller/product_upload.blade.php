@@ -380,7 +380,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div
                             <div class="form-box bg-white mt-4">
                                 <div class="form-box-title px-3 py-2">
                                     {{__('PDF Specification')}}
