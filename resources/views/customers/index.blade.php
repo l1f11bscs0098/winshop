@@ -15,7 +15,7 @@
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title" style="width: 50%;">{{__('Customers')}}</h3>
-        <a href="{{ route('customers.register')}}" class="btn btn-primary" style="float: right;">Register Whole Seller</a>
+        <a href="{{ url('admin/cregister')}}" class="btn btn-primary" style="float: right;">Register Whole Seller</a>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-bordered demo-dt-basic" cellspacing="0" width="100%">
@@ -23,6 +23,7 @@
                 <tr>
                     <th>#</th>
                     <th>{{__('Name')}}</th>
+                    <th>{{__('Role')}}</th>
                     <th>{{__('Email Address')}}</th>
                     <th width="10%">{{__('Password')}}</th>
                 </tr>
@@ -31,8 +32,9 @@
                 @foreach($customers as $key => $customer)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{$customer->user->name}}</td>
-                        <td>{{$customer->user->email}}</td>
+                        <td>{{$customer->name}}</td>
+                        <td>{{$customer->user_type}}</td>
+                        <td>{{$customer->email}}</td>
                         <td>
                             <div class="btn-group dropdown">
                                 <button class="btn btn-primary dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button">

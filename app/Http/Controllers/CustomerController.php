@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\User;
 use App\Order;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class CustomerController extends Controller
 {
@@ -16,7 +19,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::orderBy('created_at', 'desc')->get();
+        // $customers = Customer::orderBy('created_at', 'desc')->get();
+        $customers = User::whereNotIn('user_type',['admin','seller'])->orderBy('created_at', 'desc')->get();
+// dd($customers);
         return view('customers.index', compact('customers'));
     }
 
@@ -43,8 +48,22 @@ class CustomerController extends Controller
 
     public function register(Request $request)
     {
+        $customer = new User;
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->user_type = "wholeSeller";
+        $customer->password = Hash::make($request->password);
+        $customer->save();
+        $customer->email_verified_at = $customer->created_at;
 
-        return view('customers.register');
+        $newcustomer = new Customer;
+            $newcustomer->user_id = $customer->id;
+            $newcustomer->save();
+
+        $customers = Customer::orderBy('created_at', 'desc')->get();
+
+    flash(__('Customer has been created successfully'))->success();
+            return redirect()->route('customers.index');
     }
 
     /**

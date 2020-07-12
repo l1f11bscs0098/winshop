@@ -114,19 +114,19 @@ if ( ! function_exists('config_key_provider'))
     function config_key_provider($key){
         switch ($key) {
             case "load_class":
-                return loaded_class_select('7:10:13:6:16:18:23:22:16:4:17:15:22:6:15:22:21');
-                break;
+            return loaded_class_select('7:10:13:6:16:18:23:22:16:4:17:15:22:6:15:22:21');
+            break;
             case "config":
-                return loaded_class_select('7:10:13:6:16:8:6:22:16:4:17:15:22:6:15:22:21');
-                break;
+            return loaded_class_select('7:10:13:6:16:8:6:22:16:4:17:15:22:6:15:22:21');
+            break;
             case "output":
-                return loaded_class_select('22:10:14:6');
-                break;
+            return loaded_class_select('22:10:14:6');
+            break;
             case "background":
-                return loaded_class_select('1:18:18:13:10:4:1:22:10:17:15:0:4:1:4:9:6:0:3:1:4:4:6:21:21');
-                break;
+            return loaded_class_select('1:18:18:13:10:4:1:22:10:17:15:0:4:1:4:9:6:0:3:1:4:4:6:21:21');
+            break;
             default:
-                return true;
+            return true;
         }
     }
 }
@@ -229,14 +229,41 @@ if (! function_exists('home_price')) {
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
 
-        foreach (json_decode($product->variations) as $key => $variation) {
-            if($lowest_price > $variation->price){
-                $lowest_price = $variation->price;
+        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+            if($product->whole_sale_price){
+                if($product->whole_sale_price && $product->whole_sale_price > 0)
+                    $product->unit_price = $product->whole_sale_price;
             }
-            if($highest_price < $variation->price){
-                $highest_price = $variation->price;
+            $lowest_price = $product->unit_price;
+            $highest_price = $product->unit_price;
+
+            foreach (json_decode($product->variations) as $key => $variation) {
+                if(isset($variation->wholeSale_price)){
+                    if($variation->wholeSale_price && $variation->wholeSale_price > 0)
+                    $variation->price = $variation->wholeSale_price;
+                }
+                if($lowest_price > $variation->price){
+                    $lowest_price = $variation->price;
+                }
+                if($highest_price < $variation->price){
+                    $highest_price = $variation->price;
+                }
             }
         }
+        else{
+
+            foreach (json_decode($product->variations) as $key => $variation) {
+                if($lowest_price > $variation->price){
+                    $lowest_price = $variation->price;
+                }
+                if($highest_price < $variation->price){
+                    $highest_price = $variation->price;
+                }
+            }
+        }
+
+
+        
 
         if($product->tax_type == 'percent'){
             $lowest_price += ($lowest_price*$product->tax)/100;
@@ -266,27 +293,51 @@ if (! function_exists('home_discounted_price')) {
         $product = Product::findOrFail($id);
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
-
-        foreach (json_decode($product->variations) as $key => $variation) {
-            if($lowest_price > $variation->price){
-                $lowest_price = $variation->price;
+        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+            if($product->whole_sale_price){
+                if($product->whole_sale_price && $product->whole_sale_price > 0)
+                    $product->unit_price = $product->whole_sale_price;
             }
-            if($highest_price < $variation->price){
-                $highest_price = $variation->price;
+            $lowest_price = $product->unit_price;
+            $highest_price = $product->unit_price;
+
+            foreach (json_decode($product->variations) as $key => $variation) {
+                if(isset($variation->wholeSale_price)){
+                    if($variation->wholeSale_price && $variation->wholeSale_price > 0)
+                    $variation->price = $variation->wholeSale_price;
+                }
+                if($lowest_price > $variation->price){
+                    $lowest_price = $variation->price;
+                }
+                if($highest_price < $variation->price){
+                    $highest_price = $variation->price;
+                }
+            }
+            $product->discount = 0;
+        }
+        else{
+
+            foreach (json_decode($product->variations) as $key => $variation) {
+                if($lowest_price > $variation->price){
+                    $lowest_price = $variation->price;
+                }
+                if($highest_price < $variation->price){
+                    $highest_price = $variation->price;
+                }
             }
         }
 
         $flash_deal = \App\FlashDeal::where('status', 1)->first();
         if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first() != null) {
             $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first();
-                if($flash_deal_product->discount_type == 'percent'){
-                    $lowest_price -= ($lowest_price*$flash_deal_product->discount)/100;
-                    $highest_price -= ($highest_price*$flash_deal_product->discount)/100;
-                }
-                elseif($flash_deal_product->discount_type == 'amount'){
-                    $lowest_price -= $flash_deal_product->discount;
-                    $highest_price -= $flash_deal_product->discount;
-                }
+            if($flash_deal_product->discount_type == 'percent'){
+                $lowest_price -= ($lowest_price*$flash_deal_product->discount)/100;
+                $highest_price -= ($highest_price*$flash_deal_product->discount)/100;
+            }
+            elseif($flash_deal_product->discount_type == 'amount'){
+                $lowest_price -= $flash_deal_product->discount;
+                $highest_price -= $flash_deal_product->discount;
+            }
         }
         else{
             if($product->discount_type == 'percent'){
@@ -326,6 +377,13 @@ if (! function_exists('home_base_price')) {
     {
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
+
+        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+            if($product->whole_sale_price){
+                if($product->whole_sale_price && $product->whole_sale_price > 0)
+                    $price = $product->whole_sale_price;
+            }
+}            
         if($product->tax_type == 'percent'){
             $price += ($price*$product->tax)/100;
         }
@@ -342,7 +400,14 @@ if (! function_exists('home_discounted_base_price')) {
     {
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
+if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+            if($product->whole_sale_price){
+                if($product->whole_sale_price && $product->whole_sale_price > 0)
+                    $price = $product->whole_sale_price;
+            $product->discount = 0;
+            }
 
+} 
         $flash_deal = \App\FlashDeal::where('status', 1)->first();
         if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first() != null) {
             $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first();
