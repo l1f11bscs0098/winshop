@@ -58,6 +58,24 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
+                                                        <div class="input-group input-group--style-1">
+                                                            <input type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" name="phone">
+                                                            <span class="input-group-addon">
+                                                                <i class="text-md la la-tel"></i>
+                                                            </span>
+                                                            @if ($errors->has('phone'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
                                                         <!-- <label>{{ __('password') }}</label> -->
                                                         <div class="input-group input-group--style-1">
                                                             <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" name="password">

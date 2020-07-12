@@ -16,6 +16,7 @@
                     <th>{{__('Order Code')}}</th>
                     <th>{{__('Num. of Products')}}</th>
                     <th>{{__('Customer')}}</th>
+                    <th>{{__('Customer Type')}}</th>
                     <th>{{__('Amount')}}</th>
                     <th>{{__('Delivery Status')}}</th>
                     <th>{{__('Payment Method')}}</th>
@@ -45,6 +46,14 @@
                                 @else
                                     Guest ({{ $order->guest_id }})
                                 @endif
+                            </td>
+                            <td>
+                                @if ($order->user_id != null)
+                                    {{ $order->user->user_type }}
+                                @else
+                                    Guest
+                                @endif
+
                             </td>
                             <td>
                                 {{ single_price($order->orderDetails->where('seller_id', Auth::user()->id)->sum('price') + $order->orderDetails->where('seller_id', Auth::user()->id)->sum('tax')) }}

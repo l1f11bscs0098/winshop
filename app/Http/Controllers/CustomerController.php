@@ -51,6 +51,7 @@ class CustomerController extends Controller
         $customer = new User;
         $customer->name = $request->name;
         $customer->email = $request->email;
+        $customer->phone = $request->phone;
         $customer->user_type = "wholeSeller";
         $customer->password = Hash::make($request->password);
         $customer->save();
