@@ -358,6 +358,9 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 #page-content .error-code,#page-head .error-code {
 	margin-bottom:10px
 }
+.head-list{
+	padding: 15px;
+}
 @media (min-width:1024px) {
 	#container.boxed-layout,#container.boxed-layout.navbar-fixed #navbar {
 		background-color:#8c979b
