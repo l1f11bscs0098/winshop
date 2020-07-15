@@ -130,7 +130,7 @@ $orders = DB::table('orders')
 
 
 <li class=" parent {{ areActiveRoutes(['orders.index.admin', 'orders.show'])}}">
-    <a href="#">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-shopping-basket"></i>
         <span class="menu-title">{{__('Orders')}} @if($orders > 0)<span class="pull-right badge badge-info">{{ $orders }}</span>@endif</span>
     </a>
@@ -138,14 +138,14 @@ $orders = DB::table('orders')
 
     <ul class="collapse child dropdown-menu">
         <li class="{{ areActiveRoutes(['orders.index.admin', 'orders.show'])}}">
-            <a class="nav-link" href="{{ route('orders.index.admin') }}">
+            <a class="nav-link" href="{{ route('orders.index.admin') }}" >
                 {{__('Inhouse orders')}} @if($orders > 0)
                 <span class="pull-right badge badge-info">{{ $orders }}</span>@endif
             </a>
         </li>
         <!-- Pickup Point Orders -->
         @if(Auth::user()->user_type == 'admin' || in_array('14', json_decode(Auth::user()->staff->role->permissions)))
-        <li class="{{ areActiveRoutes(['pick_up_point.order_index'])}}">
+        <li class="{{ areActiveRoutes(['pick_up_point.order_index','pick_up_point.order_show'])}}">
             <a class="nav-link" href="{{ route('pick_up_point.order_index') }}">
                 {{__('Pick-up Point Order')}}
             </a>
