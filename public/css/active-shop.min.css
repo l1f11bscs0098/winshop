@@ -7546,15 +7546,15 @@ a.disabled-link,a.disabled-link:visited,a.disabled-link:active,a.disabled-link:h
 	.topbar-list li{
 		display: inline-block;
 	}
-	.collapse.in li{
+	/* .collapse.in li{
 		display: block;
 		width: 100%;
-	}
+	} */
 	.active .collapse.in{
 		background-color: #fff;
 	}
 	.collapse.in li a:hover{
-		color: #000 !important;
+		color: #000;
 	}
 	
 	.parent{
@@ -7568,7 +7568,7 @@ a.disabled-link,a.disabled-link:visited,a.disabled-link:active,a.disabled-link:h
 		display: none  !important;
 		transition: all 0.3s ease;
 		background: white;
-		width: 170%;
+		width: 200%;
 	}
 	.parent:hover .child{
 		display: block !important; 

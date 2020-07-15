@@ -145,7 +145,7 @@ $orders = DB::table('orders')
         </li>
         <!-- Pickup Point Orders -->
         @if(Auth::user()->user_type == 'admin' || in_array('14', json_decode(Auth::user()->staff->role->permissions)))
-        <li class="{{ areActiveRoutes(['pick_up_point.order_index','pick_up_point.order_show'])}}">
+        <li class="{{ areActiveRoutes(['pick_up_point.order_index'])}}">
             <a class="nav-link" href="{{ route('pick_up_point.order_index') }}">
                 {{__('Pick-up Point Order')}}
             </a>
