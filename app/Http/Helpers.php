@@ -229,7 +229,7 @@ if (! function_exists('home_price')) {
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
 
-        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+        if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
             if($product->whole_sale_price){
                 if($product->whole_sale_price && $product->whole_sale_price > 0)
                     $product->unit_price = $product->whole_sale_price;
@@ -293,7 +293,7 @@ if (! function_exists('home_discounted_price')) {
         $product = Product::findOrFail($id);
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
-        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+        if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
             if($product->whole_sale_price){
                 if($product->whole_sale_price && $product->whole_sale_price > 0)
                     $product->unit_price = $product->whole_sale_price;
@@ -378,7 +378,7 @@ if (! function_exists('home_base_price')) {
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
 
-        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+        if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
             if($product->whole_sale_price){
                 if($product->whole_sale_price && $product->whole_sale_price > 0)
                     $price = $product->whole_sale_price;
@@ -400,7 +400,7 @@ if (! function_exists('home_discounted_base_price')) {
     {
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
-if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
             if($product->whole_sale_price){
                 if($product->whole_sale_price && $product->whole_sale_price > 0)
                     $price = $product->whole_sale_price;

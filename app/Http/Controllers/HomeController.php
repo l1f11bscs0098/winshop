@@ -232,7 +232,7 @@ class HomeController extends Controller
 if(Auth::check())
         {
             // dd(Auth::user()->user_type);
-            if( Auth::user()->user_type == 'wholeSeller'){
+            if( Auth::user()->user_type == 'wholeSaler'){
                     if($product->whole_sale_price && $product->whole_sale_price > 0)
                     $product->unit_price = $product->whole_sale_price;
             // dd($product);
@@ -268,7 +268,7 @@ if(Auth::check())
         $products = filter_products(Product::orderBy('created_at', 'desc'))->paginate(12);
         if(Auth::check())
         {
-            if( Auth::user()->user_type == 'wholeSeller'){
+            if( Auth::user()->user_type == 'wholeSaler'){
                 foreach ($products as $key => $product) {
                     if($product->whole_sale_price && $product->whole_sale_price != null)
                     $product->unit_price = $product->whole_sale_price;
@@ -309,7 +309,7 @@ if(Auth::check())
         $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         if(Auth::check())
         {
-            if( Auth::user()->user_type == 'wholeSeller'){
+            if( Auth::user()->user_type == 'wholeSaler'){
                 foreach ($products as $key => $product) {
                     if($product->whole_sale_price && $product->whole_sale_price != null)
                     $product->unit_price = $product->whole_sale_price;
@@ -419,7 +419,7 @@ if(Auth::check())
 
 if(Auth::check())
         {
-            if( Auth::user()->user_type == 'wholeSeller'){
+            if( Auth::user()->user_type == 'wholeSaler'){
                 foreach ($products as $key => $product) {
                     if($product->whole_sale_price && $product->whole_sale_price != null)
                     $product->unit_price = $product->whole_sale_price;
@@ -493,7 +493,7 @@ if(Auth::check())
                 $str .= str_replace(' ', '', $request[$choice->name]);
             }
         }
-        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+        if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
 if($str != null){
             $price = json_decode($product->variations)->$str->wholeSale_price;
             $quantity = json_decode($product->variations)->$str->qty;

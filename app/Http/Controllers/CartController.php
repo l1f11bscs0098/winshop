@@ -59,7 +59,7 @@ class CartController extends Controller
         //Check the string and decreases quantity for the stock
         
 
-        if(Auth::check() && Auth::user()->user_type == 'wholeSeller'){
+        if(Auth::check() && Auth::user()->user_type == 'wholeSaler'){
             if($product->whole_sale_price){
                 if($product->whole_sale_price && $product->whole_sale_price > 0){
                     $price = $product->whole_sale_price;
