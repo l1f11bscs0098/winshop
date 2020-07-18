@@ -4,7 +4,8 @@
         <div class="container-fluid pad-cust">
             <div class="row">
                 <div class="col-lg-7 col">
-                    <ul class="inline-links d-lg-inline-block d-flex justify-content-between">
+                    <h6 class="mb-0 welcome-text">Welcome to Winshop</h6>
+                    <!-- <ul class="inline-links d-lg-inline-block d-flex justify-content-between">
                         <li class="dropdown" id="lang-change">
                             @php
                                 if(Session::has('locale')){
@@ -46,7 +47,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
 
                 <div class="col-5 text-right d-none d-lg-block">

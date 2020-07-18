@@ -4,7 +4,8 @@
     <section class="home-banner-area mb-4">
         <div class="container-fluid pad-cust">
             <div class="row no-gutters position-relative">
-                <div class="col-lg-3 position-static order-2 order-lg-0">
+                <!-- Categories -->
+                <!-- <div class="col-lg-3 position-static order-2 order-lg-0">
                     <div class="category-sidebar">
                         <div class="all-category d-none d-lg-block">
                             <span >{{__('Categories')}}</span>
@@ -105,9 +106,10 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-7 order-1 order-lg-0">
+                <!-- Main Slider -->
+                <div class="col-lg-12 order-1 order-lg-0">
                     <div class="home-slide">
                         <div class="home-slide">
                             <div class="slick-carousel" data-slick-arrows="true" data-slick-dots="true" data-slick-autoplay="true">
@@ -119,6 +121,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ <!-- Trending Category / Top Picks-->
+    <section class="mb-4">
+        <div class="container-fluid pad-cust">
+            <div class="px-2 py-4 p-md-4 bg-white shadow-sm">
+                <div class="section-title-1 clearfix">
+                    <h3 class="heading-5 strong-700 mb-0 float-left">
+                        <span class="mr-4">{{__('Top Picks')}}</span>
+                    </h3>
+                </div>
+                                   
                     <div class="trending-category  d-none d-lg-block">
                         <ul>
                             @foreach (\App\Category::where('featured', 1)->get()->take(7) as $key => $category)
@@ -134,28 +152,34 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="mb-4">
+        <div class="container-fluid pad-cust">
+            <div class="px-2 py-4 p-md-4 bg-white shadow-sm">
+                <div class="section-title-1 clearfix">
+                    <h3 class="heading-5 strong-700 mb-0 float-left">
+                    {{__('Today')}}
+                                    <span class="badge badge-danger">{{__('Hot')}}</span>
+                    </h3>
+                </div>
+                                   
+                <!-- Flash Deal -->
                 @php
                     $flash_deal = \App\FlashDeal::where('status', 1)->first();
                 @endphp
                 @if($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date)
-                    <div class="col-lg-2 d-none d-lg-block">
+                    <div class="col-lg-12 d-none d-lg-block">
                         <div class="flash-deal-box bg-white h-100">
-                            <div class="title text-center p-2 gry-bg">
-                                <h3 class="heading-6 mb-0">
-                                    {{__('Flash Deal')}}
-                                    <span class="badge badge-danger">{{__('Hot')}}</span>
-                                </h3>
-                                <div class="countdown countdown--style-1 countdown--style-1-v1" data-countdown-date="{{ date('m/d/Y', $flash_deal->end_date) }}" data-countdown-label="show"></div>
-                            </div>
                             <div class="flash-content c-scrollbar">
                                 @foreach ($flash_deal->flash_deal_products as $key => $flash_deal_product)
                                     @php
                                         $product = \App\Product::find($flash_deal_product->product_id);
                                     @endphp
                                     @if ($product != null)
-                                        <a href="{{ route('product', $product->slug) }}" class="d-block flash-deal-item">
+                                        <a href="{{ route('product', $product->slug) }}" class="flash-deal-item">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col">
                                                     <div class="img" style="background-image:url('{{ asset($product->flash_deal_img) }}')">
@@ -177,18 +201,13 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-lg-2 d-none d-lg-block">
+                <!-- Today Deals -->
+                    <div class="col-lg-12 d-none d-lg-block">
                         <div class="flash-deal-box bg-white h-100">
-                            <div class="title text-center p-2">
-                                <h3 class="heading-6 mb-0">
-                                    {{ __('Todays Deal') }}
-                                    <span class="badge badge-danger">{{__('Hot')}}</span>
-                                </h3>
-                            </div>
-                            <div class="flash-content c-scrollbar c-height">
+                            <div class="flash-content c-height">
                                 @foreach (filter_products(\App\Product::where('published', 1)->where('todays_deal', '1'))->get() as $key => $product)
                                     @if ($product != null)
-                                        <a href="{{ route('product', $product->slug) }}" class="d-block flash-deal-item">
+                                        <a href="{{ route('product', $product->slug) }}" class="flash-deal-item">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col">
                                                     <div class="img" style="background-image:url('{{ asset($product->flash_deal_img) }}')">

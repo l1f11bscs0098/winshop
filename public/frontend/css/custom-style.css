@@ -358,12 +358,18 @@ select + .select2-container{
 
 
 /* top bar */
+.welcome-text{
+    padding: 10px 0;
+    display: inline-block;
+    color: #818a91;
+    font-size: 0.75rem;
+}
 .top-navbar .top-bar-item {
     padding: 10px 0;
     display: inline-block;
 }
 .top-navbar {
-    background: #f8f8f8;
+    background: #000;
     border-bottom: 1px solid #e9e9e9;
 }
 .top-navbar .inline-links > li:not(:last-of-type){
@@ -405,7 +411,7 @@ select + .select2-container{
 }
 .logo-bar-area .navbar-brand img {
     max-width: 100%;
-    width: auto;
+    width: 70%;
     height: auto;
     max-height: 40px;
 }
@@ -1944,10 +1950,12 @@ input:checked + .slider:before {
     margin-bottom: 10px;
     border-bottom: 1px solid;
     border-radius: 0;
+    display: inline-block;
+    width: 12%;
 }
-.flash-deal-item:last-of-type {
+/* .flash-deal-item:last-of-type {
     margin-bottom: 0px;
-}
+} */
 
 .flash-deal-item .price {
     font-size: 16px;
@@ -1979,13 +1987,13 @@ input:checked + .slider:before {
 
 .trending-category ul li {
     display: inline-block;
-    width: calc((100%/7) - 10px);
+    width: calc((100%/10) - 10px);
     -webkit-transition: width .3s ease;
     -moz-transition: width .3s ease;
     -o-transition: width .3s ease;
     transition: width .3s ease;
 }
-.trending-category ul li.active,
+/* .trending-category ul li.active,
 .trending-category ul li:hover {
     width: calc((100%/7) + 39px);
 }
@@ -2004,7 +2012,7 @@ input:checked + .slider:before {
 }
 .trending-category ul li.active:hover .img{
     margin-left: 16px;
-}
+} */
 .trend-category-single {
     overflow: hidden;
     padding-top: 12px;
