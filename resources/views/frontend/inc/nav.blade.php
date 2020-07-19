@@ -620,6 +620,259 @@
     </div>
     <!-- Navbar -->
 
+
+
+<!-- New Sub Nav -->
+
+<nav id="menu-wrap"> 
+     <!-- Categories -->
+<div class="dropdown cat-dropdown category-sidebar">
+    <button class="btn dropdown-toggle all-category d-none d-lg-block" type="button" data-toggle="dropdown">
+    <span >{{__('Categories')}}</span>
+                            <a href="{{ route('categories.all') }}">
+                                <span class="d-none d-lg-inline-block">{{__('See All')}} ></span>
+                            </a>
+    <span class="caret"></span></button>
+                   
+                <!-- no-scrollbar -->
+    <ul class="dropdown-menu categories no-scrollbar">
+                            <li class="d-lg-none">
+                                <a href="{{ route('categories.all') }}">
+                                    <img loading="lazy"  class="cat-image" src="{{ asset('frontend/images/icons/list.png') }}" width="30">
+                                    <span class="cat-name">{{__('All')}} <br> {{__('Categories')}}</span>
+                                </a>
+                            </li>
+                            @foreach (\App\Category::all()->take(11) as $key => $category)
+                                @php
+                                    $brands = array();
+                                @endphp
+                                <li>
+                                    <a href="{{ route('products.category', $category->slug) }}">
+                                        <img loading="lazy"  class="cat-image" src="{{ asset($category->icon) }}" width="30">
+                                        <span class="cat-name">{{ __($category->name) }}</span>
+                                    </a>
+                                    @if(count($category->subcategories)>0)
+                                        <div class="sub-cat-menu c-scrollbar">
+                                            <div class="sub-cat-main row no-gutters">
+                                                <div class="col-9">
+                                                    <div class="sub-cat-content">
+                                                        <div class="sub-cat-list">
+                                                            <div class="card-columns">
+                                                                @foreach ($category->subcategories as $subcategory)
+                                                                    <div class="card">
+                                                                        <ul class="sub-cat-items">
+                                                                            <li class="sub-cat-name"><a href="{{ route('products.subcategory', $subcategory->slug) }}">{{ __($subcategory->name) }}</a></li>
+                                                                            @foreach ($subcategory->subsubcategories as $subsubcategory)
+                                                                                @php
+                                                                                    foreach (json_decode($subsubcategory->brands) as $brand) {
+                                                                                        if(!in_array($brand, $brands)){
+                                                                                            array_push($brands, $brand);
+                                                                                        }
+                                                                                    }
+                                                                                @endphp
+                                                                                <li><a href="{{ route('products.subsubcategory', $subsubcategory->slug) }}">{{ __($subsubcategory->name) }}</a></li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                        <div class="sub-cat-featured">
+                                                            {{-- <ul class="sub-cat-featured-list inline-links d-flex">
+                                                                <li class="col">
+                                                                    <a href="" >
+                                                                        <span class="featured-name">New arrival plus size</span>
+                                                                        <span class="featured-img">
+                                                                            <img loading="lazy"  src="{{ asset('frontend/images/girls/1.png') }}" class="img-fluid">
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="col">
+                                                                    <a href="" >
+                                                                        <span class="featured-name">Sweater Collection</span>
+                                                                        <span class="featured-img">
+                                                                            <img loading="lazy"  src="{{ asset('frontend/images/girls/2.png') }}" class="img-fluid">
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="col">
+                                                                    <a href="" >
+                                                                        <span class="featured-name">High Quality Formal Dresses</span>
+                                                                        <span class="featured-img">
+                                                                            <img loading="lazy"  src="{{ asset('frontend/images/girls/3.png') }}" class="img-fluid">
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="sub-cat-brand">
+                                                        <ul class="sub-brand-list">
+                                                            @foreach ($brands as $brand_id)
+                                                                @if(\App\Brand::find($brand_id) != null)
+                                                                    <li class="sub-brand-item">
+                                                                        <a href="{{ route('products.brand', \App\Brand::find($brand_id)->slug) }}" ><img loading="lazy"  src="{{ asset(\App\Brand::find($brand_id)->logo) }}" class="img-fluid"></a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </li>
+                            @endforeach
+    </ul>
+  </div>   
+	<ul id="menu">
+    <li>
+    </li>
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="">Categories</a>
+			<ul>
+				<li>
+					<a href="">CSS</a>
+					<ul>
+						<li><a href="">Item 11</a></li>
+						<li><a href="">Item 12</a></li>
+						<li><a href="">Item 13</a></li>
+						<li><a href="">Item 14</a></li>
+					</ul>				
+				</li>
+				<li>
+					<a href="">Graphic design</a>
+					<ul>
+						<li><a href="">Item 21</a></li>
+						<li><a href="">Item 22</a></li>
+						<li><a href="">Item 23</a></li>
+						<li><a href="">Item 24</a></li>
+					</ul>				
+				</li>
+				<li>
+					<a href="">Development tools</a>
+					<ul>
+						<li><a href="">Item 31</a></li>
+						<li><a href="">Item 32</a></li>
+						<li><a href="">Item 33</a></li>
+						<li><a href="">Item 34</a></li>
+					</ul>				
+				</li>
+				<li>
+					<a href="">Web design</a>				
+					<ul>
+						<li><a href="">Item 41</a></li>
+						<li><a href="">Item 42</a></li>
+						<li><a href="">Item 43</a></li>
+						<li><a href="">Item 44</a></li>
+					</ul>	
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="">Work</a>
+			<ul>
+				<li>
+					<a href="">Work 1</a>
+					<ul>
+						<li>
+							<a href="">Work 11</a>		
+							<ul>
+								<li><a href="">Work 111</a></li>
+								<li><a href="">Work 112</a></li>
+								<li><a href="">Work 113</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 12</a>
+							<ul>
+								<li><a href="">Work 121</a></li>
+								<li><a href="">Work 122</a></li>
+								<li><a href="">Work 123</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 13</a>
+							<ul>
+								<li><a href="">Work 131</a></li>
+								<li><a href="">Work 132</a></li>
+								<li><a href="">Work 133</a></li>
+							</ul>							
+						</li>
+					</ul>					
+				</li>
+				<li>
+					<a href="">Work 2</a>
+					<ul>
+						<li>
+							<a href="">Work 21</a>
+							<ul>
+								<li><a href="">Work 211</a></li>
+								<li><a href="">Work 212</a></li>
+								<li><a href="">Work 213</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 22</a>
+							<ul>
+								<li><a href="">Work 221</a></li>
+								<li><a href="">Work 222</a></li>
+								<li><a href="">Work 223</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 23</a>
+							<ul>
+								<li><a href="">Work 231</a></li>
+								<li><a href="">Work 232</a></li>
+								<li><a href="">Work 233</a></li>
+							</ul>							
+						</li>
+					</ul>					
+				</li>
+				<li>
+					<a href="">Work 3</a>
+					<ul>
+						<li>
+							<a href="">Work 31</a>
+							<ul>
+								<li><a href="">Work 311</a></li>
+								<li><a href="">Work 312</a></li>
+								<li><a href="">Work 313</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 32</a>
+							<ul>
+								<li><a href="">Work 321</a></li>
+								<li><a href="">Work 322</a></li>
+								<li><a href="">Work 323</a></li>
+							</ul>							
+						</li>
+						<li>
+							<a href="">Work 33</a>
+							<ul>
+								<li><a href="">Work 331</a></li>
+								<li><a href="">Work 332</a></li>
+								<li><a href="">Work 333</a></li>
+							</ul>							
+						</li>
+					</ul>					
+				</li>
+			</ul>		
+		</li>
+		<li><a href="">About</a></li>
+		<li><a href="">Contact</a></li>
+	</ul>
+</nav>
+
+
+
+
     <div class="main-nav-area d-none d-lg-block">
         <nav class="navbar navbar-expand-lg navbar--bold navbar--style-2 navbar-light bg-default">
           <!--   <div class="container">
