@@ -4434,7 +4434,7 @@ input[type="radio"]:checked + .radio-box:after{
     width: 100%;
 }
 
-@media (max-width:767){
+@media (max-width:767px){
     #menu-wrap{
         display:none !important
     }
