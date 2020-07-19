@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
-        $customer->user_type = "wholeSeller";
+        $customer->user_type = "wholeSaler";
         $customer->password = Hash::make($request->password);
         $customer->save();
         $customer->email_verified_at = $customer->created_at;
