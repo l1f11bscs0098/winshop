@@ -356,12 +356,16 @@ select + .select2-container{
     background:transparent
 }
 
+.col-white{
+    color:#fff !important
+}
+
 
 /* top bar */
 .welcome-text{
     padding: 10px 0;
     display: inline-block;
-    color: #818a91;
+    color: #fff;
     font-size: 0.75rem;
 }
 .top-navbar .top-bar-item {
@@ -678,14 +682,19 @@ section.home-banner-area {
     opacity: 0.6;
     margin-right: 10px;
 }
-
+.slick-slide{
+    height:595px !important
+}
+.slider-img{
+    height:595px
+}
 
 
 /* sub category */
 .category-sidebar .sub-cat-menu{
     display: none;
     position: absolute;
-    width: calc(100% - 25%);
+    width: 100%;
     left: 25%;
     height: 100%;
     overflow: hidden;

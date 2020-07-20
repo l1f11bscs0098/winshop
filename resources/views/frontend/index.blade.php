@@ -12,7 +12,7 @@
                             <div class="slick-carousel" data-slick-arrows="true" data-slick-dots="true" data-slick-autoplay="true">
                                 @foreach (\App\Slider::where('published', 1)->get() as $key => $slider)
                                     <div class="" style="height:275px;">
-                                        <img loading="lazy"  class="d-block w-100 h-100" src="{{ asset($slider->photo) }}" alt="Slider Image">
+                                        <img loading="lazy"  class="d-block w-100 h-100 slider-img" src="{{ asset($slider->photo) }}" alt="Slider Image">
                                     </div>
                                 @endforeach
                             </div>
