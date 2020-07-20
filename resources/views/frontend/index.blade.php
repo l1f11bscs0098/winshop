@@ -2,12 +2,8 @@
 
 @section('content')
     <section class="home-banner-area mb-4">
-        <div class="container-fluid pad-cust">
-            <div class="row no-gutters position-relative">
-
-                <!-- Main Slider -->
-                <div class="col-lg-12 order-1 order-lg-0">
-                    <div class="home-slide">
+        <div class="container-fluid pad-0">
+        <div class="home-slide">
                         <div class="home-slide">
                             <div class="slick-carousel" data-slick-arrows="true" data-slick-dots="true" data-slick-autoplay="true">
                                 @foreach (\App\Slider::where('published', 1)->get() as $key => $slider)
@@ -18,6 +14,11 @@
                             </div>
                         </div>
                     </div>
+            <div class="row no-gutters position-relative">
+
+                <!-- Main Slider -->
+                <div class="col-lg-12 order-1 order-lg-0">
+
                 </div>
             </div>
         </div>
