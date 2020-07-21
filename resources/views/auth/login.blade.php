@@ -20,9 +20,15 @@
         <div class="text-center">
             <br>
 			@if($generalsetting->logo != null)
-                <img loading="lazy"  src="{{ asset($generalsetting->logo) }}" class="" height="44">
+                <img loading="lazy" style="max-width: 100%;
+    width: 74%;
+    height: 70px;
+    max-height: 70px;" src="{{ asset($generalsetting->logo) }}" class="default-logo" height="44">
             @else
-                <img loading="lazy"  src="{{ asset('frontend/images/logo/logo.png') }}" class="" height="44">
+                <img loading="lazy" style="max-width: 100%;
+    width: 74%;
+    height: 70px;
+    max-height: 70px;"  src="{{ asset('frontend/images/logo/logo.png') }}" class="default-logo" height="44">
             @endif
 
             <br>

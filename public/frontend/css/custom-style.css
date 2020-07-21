@@ -418,9 +418,9 @@ select + .select2-container{
 }
 .logo-bar-area .navbar-brand img {
     max-width: 100%;
-    width: 70%;
-    height: auto;
-    max-height: 40px;
+    width: 74%;
+    height: 70px;
+    max-height: 70px;
 }
 .category-menu-icon-box{
     width: 46px;
@@ -607,7 +607,7 @@ select + .select2-container{
 /* main nav bar area */
 .main-nav-area {
     border-bottom: 1px solid #e9e9e9;
-    padding: 15px 0;
+    padding: 5px 0;
 }
 
 .main-nav-area .navbar-nav .nav-item .nav-link {
@@ -641,7 +641,7 @@ section.home-banner-area {
     padding-left: 16px;
     font-size: 13px;
     background: transparent;
-    border: 2px solid #000;
+    border: 1px solid #cbcbcb;
     border-radius: 4px;
 }
 .category-sidebar .all-category > span{
@@ -4299,11 +4299,11 @@ input[type="radio"]:checked + .radio-box:after{
 #menu a {
     float: left;
     padding: 12px 30px;
-    color: #999;
     text-transform: uppercase;
-    font: bold 12px Arial, Helvetica;
     text-decoration: none;
-    text-shadow: 0 1px 0 #000;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
 }
 
 #menu li:hover > a {
@@ -4444,6 +4444,14 @@ input[type="radio"]:checked + .radio-box:after{
 
 .dropdown-menu.categories{
     width: 100%;
+    min-height:615px;
+}
+
+.footer .d-block img, .default-logo{
+    max-width: 100%;
+    width: 74%;
+    height: 70px;
+    max-height: 70px;
 }
 
 @media (max-width:767px){

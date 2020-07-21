@@ -252,7 +252,7 @@ $orders = DB::table('orders')
 <li class="parent">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-envelope"></i>
-        <span class="menu-title">{{__('Messaging')}}</span>
+        <span class="menu-title">{{__('Pages')}}</span>
         <i class="arrow"></i>
     </a>
 
@@ -260,6 +260,23 @@ $orders = DB::table('orders')
     <ul class="collapse child dropdown-menu">
         <li class="{{ areActiveRoutes(['newsletters.index'])}}">
             <a class="nav-link" href="{{route('newsletters.index')}}">{{__('Newsletters')}}</a>
+        </li>
+                <!-- // Bussiness Settings -->
+
+                <li class="{{ areActiveRoutes(['sellerpolicy.index'])}}">
+            <a class="nav-link" href="{{route('sellerpolicy.index', 'seller_policy')}}">{{__('Seller Policy')}}</a>
+        </li>
+        <li class="{{ areActiveRoutes(['returnpolicy.index'])}}">
+            <a class="nav-link" href="{{route('returnpolicy.index', 'return_policy')}}">{{__('Return Policy')}}</a>
+        </li>
+        <li class="{{ areActiveRoutes(['supportpolicy.index'])}}">
+            <a class="nav-link" href="{{route('supportpolicy.index', 'support_policy')}}">{{__('Support Policy')}}</a>
+        </li>
+        <li class="{{ areActiveRoutes(['terms.index'])}}">
+            <a class="nav-link" href="{{route('terms.index', 'terms')}}">{{__('Terms & Conditions')}}</a>
+        </li>
+        <li class="{{ areActiveRoutes(['privacypolicy.index'])}}">
+            <a class="nav-link" href="{{route('privacypolicy.index', 'privacy_policy')}}">{{__('Privacy Policy')}}</a>
         </li>
     </ul>
 </li>
@@ -303,24 +320,6 @@ $orders = DB::table('orders')
         </li>
         <li class="{{ areActiveRoutes(['languages.index', 'languages.create', 'languages.store', 'languages.show', 'languages.edit'])}}">
             <a class="nav-link" href="{{route('languages.index')}}">{{__('Languages')}}</a>
-        </li>
-
-        <!-- // Bussiness Settings -->
-
-        <li class="{{ areActiveRoutes(['sellerpolicy.index'])}}">
-            <a class="nav-link" href="{{route('sellerpolicy.index', 'seller_policy')}}">{{__('Seller Policy')}}</a>
-        </li>
-        <li class="{{ areActiveRoutes(['returnpolicy.index'])}}">
-            <a class="nav-link" href="{{route('returnpolicy.index', 'return_policy')}}">{{__('Return Policy')}}</a>
-        </li>
-        <li class="{{ areActiveRoutes(['supportpolicy.index'])}}">
-            <a class="nav-link" href="{{route('supportpolicy.index', 'support_policy')}}">{{__('Support Policy')}}</a>
-        </li>
-        <li class="{{ areActiveRoutes(['terms.index'])}}">
-            <a class="nav-link" href="{{route('terms.index', 'terms')}}">{{__('Terms & Conditions')}}</a>
-        </li>
-        <li class="{{ areActiveRoutes(['privacypolicy.index'])}}">
-            <a class="nav-link" href="{{route('privacypolicy.index', 'privacy_policy')}}">{{__('Privacy Policy')}}</a>
         </li>
 
 
